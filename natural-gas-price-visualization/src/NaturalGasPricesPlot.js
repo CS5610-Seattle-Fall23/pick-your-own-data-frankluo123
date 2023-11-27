@@ -1,7 +1,23 @@
+/**
+ * Pick Your Own Data NaturalGasPricesPlot.js JavaScript Code
+ * @author Frank Luo
+ * Sources Used:
+ * https://react.dev/learn 
+ * https://kinsta.com/knowledgebase/what-is-react-js/
+ * https://www.youtube.com/watch?v=b9eMGE7QtTk
+ **/
+
+// Importing relevant components
 import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 
-// Exporting the loadData function
+// Exporting loadData function
+
+/**
+ * Asynchronously loads data from a URL and parses it
+ * @param {string} url - URL from which the data is fetched
+ * @returns Parsed data or an empty array
+ */
 export const loadData = async (url) => {
   try {
     const response = await fetch(url);
@@ -12,11 +28,17 @@ export const loadData = async (url) => {
     }));
   } catch (error) {
     console.error("Could not load data:", error);
-    return []; // Return an empty array in case of an error
+    return []; // Returning an empty array if an error arises
   }
 };
 
-// Exporting the leastSquares function
+// Exporting leastSquares function
+
+/**
+ * Calculates the least squares regression for a set of data points
+ * @param {Array} dataPoints - Array of 'date' and 'price' data points 
+ * @returns An array [m, b] representing the slope and y-intercept of the regression line
+ */
 export const leastSquares = (dataPoints) => {
   const n = dataPoints.length;
   let sumX = 0, sumY = 0, sumXY = 0, sumXX = 0;
@@ -45,11 +67,16 @@ export const leastSquares = (dataPoints) => {
   return [m, b];
 };
 
+/**
+ * React functional component for plotting natural gas prices.
+ * @param {string} url - URL from where the data is fetched
+ * @returns JSX for the component
+ */
 const NaturalGasPricesPlot = ({ url }) => {
   const svgRef = useRef(null);
   const [data, setData] = useState([]);
 
-  // Load data when the component mounts
+  // Loading data when the component mounts
   useEffect(() => {
     const fetchData = async () => {
       const loadedData = await loadData(url);
@@ -58,7 +85,7 @@ const NaturalGasPricesPlot = ({ url }) => {
     fetchData();
   }, [url]);
 
-  // Update the visualization whenever the data changes
+  // Updating the visualization whenever the data changes
   useEffect(() => {
     if (!data.length) return;
 
@@ -67,7 +94,7 @@ const NaturalGasPricesPlot = ({ url }) => {
           height = 500 - margin.top - margin.bottom;
 
     const svg = d3.select(svgRef.current);
-    svg.selectAll("*").remove(); // Clear previous SVG content
+    svg.selectAll("*").remove(); // Clearing previous SVG content
 
     const x = d3.scaleTime().range([0, width]);
     const y = d3.scaleLinear().range([height, 0]);
@@ -105,7 +132,8 @@ const NaturalGasPricesPlot = ({ url }) => {
       .attr("r", 3.5)
       .attr("cx", d => x(d.date))
       .attr("cy", d => y(d.price));
-
+      
+    // Drawing the least squares regression line
     const [m, b] = leastSquares(data);
     const firstDate = data[0].date.getTime();
     const lastDate = data[data.length - 1].date.getTime();
@@ -118,9 +146,11 @@ const NaturalGasPricesPlot = ({ url }) => {
       .style("stroke", "red");
   }, [data]);
 
+  // Returning the SVG element to be rendered
   return (
     <svg ref={svgRef} width={960} height={500} />
   );
 };
 
+// Exporting the NaturalGasPricesPlot component
 export default NaturalGasPricesPlot;

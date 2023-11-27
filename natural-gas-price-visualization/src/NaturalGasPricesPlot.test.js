@@ -1,4 +1,14 @@
-// Importing necessary functions and libraries
+/**
+ * Jest Unit Testing NaturalGasPricesPlot.test.js
+ * @ author - Frank Luo
+ * Sources Used: 
+ * https://www.testim.io/blog/jest-testing-a-helpful-introductory-tutorial/
+ * https://jestjs.io/docs/getting-started
+ * https://dev.to/dstrekelj/how-to-write-unit-tests-in-javascript-with-jest-2e83
+ * https://www.youtube.com/watch?v=FgnxcUQ5vho 
+ */
+
+// Importing necessary components
 import { loadData, leastSquares } from './NaturalGasPricesPlot';
 import * as d3 from 'd3';
 
@@ -18,7 +28,7 @@ describe('NaturalGasPricesPlot Helper Functions', () => {
 
   // Testing loadData function
   describe('loadData', () => {
-    it('should fetch data and parse it correctly', async () => {
+    it('Fetches data and parses it correctly', async () => {
       // Mocking fetch and csvParse responses
       fetch.mockImplementationOnce(() => Promise.resolve({
         text: () => Promise.resolve("Date,Price\n1997-01-07,3.82\n1997-01-08,3.80"),
@@ -40,27 +50,24 @@ describe('NaturalGasPricesPlot Helper Functions', () => {
     it('should handle fetch errors', async () => {
       fetch.mockImplementationOnce(() => Promise.reject(new Error('Network error')));
       const data = await loadData('/daily_csv.csv');
-      expect(data).toEqual([]); // Expect an empty array in case of an error
+      expect(data).toEqual([]); // Expecting an empty array in case of an error
     });
   });
 
   // Testing leastSquares function
   describe('leastSquares', () => {
-    it('calculates the correct regression line', () => {
+    it('Calculates the correct regression line', () => {
       const dataPoints = [
         { date: new Date('2021-01-01'), price: 20 },
-        { date: new Date('2021-02-01'), price: 25 },
-        // Add more data points as needed
+        { date: new Date('2021-02-01'), price: 25 }
       ];
       const [m, b] = leastSquares(dataPoints);
 
-      const expectedSlope = 1.8667861409796892e-9; // Adjust based on actual calculation
-      const expectedIntercept = -2984.516129032258; // Adjust based on actual calculation
+      const expectedSlope = 1.8667861409796892e-9; 
+      const expectedIntercept = -2984.516129032258; 
 
       expect(m).toBeCloseTo(expectedSlope, 5);
       expect(b).toBeCloseTo(expectedIntercept, 5);
     });
   });
-
-  // Add tests for other helper functions if necessary
 });
