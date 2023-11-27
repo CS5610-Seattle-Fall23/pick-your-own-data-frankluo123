@@ -1,0 +1,43 @@
+/*
+* CSS code for altering look of Program 
+* @author - Frank Luo
+* Sources used:
+* https://www.w3schools.com/colors/colors_shades.asp 
+* https://www.w3schools.com/cssref/pr_background-color.php 
+* https://www.w3schools.com/css/css_font.asp 
+* https://developer.mozilla.org/en-US/docs/Web/CSS/background-color 
+* https://www.w3.org/Style/Examples/007/fonts.en.html
+*/
+
+/*
+Setting properties for axis line
+*/
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+/*
+Setting properties for the data points 
+*/
+.dot {
+  fill: #4285F4;
+}
+
+/*
+Setting properties for the label 
+*/
+.label {
+  font-size: 12px;
+  fill: black
+}
+
+/*
+Setting properties for the line
+*/
+line {
+  stroke: #DB4437;
+  stroke-width: 2;
+}
