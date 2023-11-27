@@ -64,4 +64,3 @@ describe('NaturalGasPricesPlot Helper Functions', () => {
 
   // Add tests for other helper functions if necessary
 });
-
