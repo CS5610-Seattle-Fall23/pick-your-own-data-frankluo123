@@ -45,10 +45,34 @@ The same requirements apply:
 
 Add screenshots to this section verifying these requirements.
 
+![HTML Validation](html_validation.png)
+![A11Y Validation](a11y_validation.png)
+![Tests Validation](tests_validation.png)
+
 ## Reflection
 
 * Include a screenshot of your generated visualization.
+![Visual Validation](Visual.png)
+
 * Explain your visual(s), i.e. the story that is being described.
+
+  The x axis represents the year while the y axis represents the price in USD per Million British Thermal Units (MMBtu). Despite short-term volatility and fluctuations, the regression line suggests that the long-term price of natural gas per MMBtu has remained relatively stable over the years. There is a recent downward trend in prices, possibly due to increased production from new sources of natural gas and technological advancements that make natural gas extraction more efficient. The graph shows volatility with certain periods of rapid price increases followed by sharp decreases. This could be resulted in certain times of the year where people need more heating as well as possible harsh economic times such as during a recession. Overall, the graph suggests a complex interplay of factors influencing natural gas prices over the last two-plus decades.
+
 * Cite the source that you are using for your data.
+
+    https://www.kaggle.com/datasets/joebeachcapital/natural-gas-prices which is taken from 
+    the U.S. Energy Information Administration EIA.
+
 * Cite any example source code that you used as part of creating your visual.
+
+  I used the following sources to help create my visual: 
+
+   https://react.dev/learn 
+
+   https://kinsta.com/knowledgebase/what-is-react-js/
+
+   https://www.youtube.com/watch?v=b9eMGE7QtTk
+
 * Describe your experience testing React components.
+  
+  Testing was a bit confusing at first, but by reading the online resources provided in the ReadMe as well as watching some YouTube tutorial videos it became a lot more easy to understand how to do it.
